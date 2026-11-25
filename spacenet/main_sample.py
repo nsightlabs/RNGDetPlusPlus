@@ -37,6 +37,10 @@ def BC_sample(args):
             v_nexts, ahead_segments = sampler.step_expert_BC_sampler()
             # save training sample
             gt_probs, gt_coords, list_len = sampler.calcualte_label(v_current,v_nexts)
+            
+            print(type(ahead_segments), [np.asarray(s).shape for s in ahead_segments])
+            print(np.asarray(gt_probs).shape, np.asarray(gt_coords).shape)
+            
             np.savez(os.path.join(f'./{args.savedir}/samples/{sample_tag}',f'{tile_name}_{sampler.step_counter}.npz'),sat=sat_ROI.astype(np.uint8),label_masks=label_masks_ROI.astype(np.uint8),\
                 historical_ROI=historical_ROI.astype(np.uint8),gt_probs=gt_probs,gt_coords=gt_coords,list_len=list_len,ahead_segments=ahead_segments)
             # visualization
