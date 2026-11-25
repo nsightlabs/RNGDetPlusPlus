@@ -200,7 +200,7 @@ with open('../data/data_split.json','r') as jf:
     data_list = json.load(jf)
     data_list = data_list['test'] + data_list['validation'] + data_list['train']
 # data_list = ['AOI_2_Vegas_1104']
-for data_index, tile_index in enumerate(data_list):
+for data_index, tile_index in tqdm(enumerate(data_list), desc='Creating Labels', total=len(data_list)):
     vertices = []
     edges = []
     vertex_flag = True
@@ -352,4 +352,4 @@ for data_index, tile_index in enumerate(data_list):
     
     global_keypoint_map.save(f'../data/intersection/{tile_index}.png')
 
-    print(f'tile: {tile_index}/{data_index}/{len(data_list)}')
+    # print(f'tile: {tile_index}/{data_index}/{len(data_list)}')
