@@ -22,7 +22,7 @@ def BC_sample(args):
     create_directory(f'./{args.savedir}/samples/{sample_tag}',delete=True)
 
     # iterate training data
-    with open('./dataset/data_split.json','r') as jf:
+    with open('./data/data_split.json','r') as jf:
         tile_list = json.load(jf)['train']
         
     for i, tile_name in enumerate(tqdm(tile_list)):
