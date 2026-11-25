@@ -136,7 +136,7 @@ def test(args):
     sigmoid = nn.Sigmoid()
     
     # tile list
-    with open('./dataset/data_split.json','r') as jf:
+    with open('./data/data_split.json','r') as jf:
         tile_list = json.load(jf)['test']
     
     time_start = time.time()
