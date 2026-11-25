@@ -301,7 +301,7 @@ if __name__ == '__main__':
     parser.add_argument('--dice_loss_coef', default=1, type=float)
     parser.add_argument('--bbox_loss_coef', default=5, type=float)
     parser.add_argument('--giou_loss_coef', default=2, type=float)
-    parser.add_argument('--local_rank', default=0, type=int)
+    parser.add_argument('--local_rank', '--local-rank', default=0, type=int)
     parser.add_argument('--device',default='cuda:0',type=str)
     parser.add_argument('--eos_coef', default=0.1, type=float,
                         help="Relative classification weight of the no-object class")
