@@ -83,7 +83,7 @@ def valid(args, RNGDetNet):
     sigmoid = nn.Sigmoid()
     
     # tile list
-    with open('./dataset/data_split.json','r') as jf:
+    with open('./data/data_split.json','r') as jf:
         tile_list = json.load(jf)['validation'][:5]
 
     for i, tile_name in enumerate(tile_list):
