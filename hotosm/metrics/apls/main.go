@@ -722,7 +722,7 @@ func main() {
 		min_distance_filter = 30.0 // 30 meters
 		prop_step = 3
 		margin_size = 30.0
-		region_size = 352.0
+		region_size = 224.0
 	}
 
 
