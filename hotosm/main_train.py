@@ -167,21 +167,22 @@ def train(args):
                 # break
         
         if args.local_rank==0:
-            torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_{epoch}.pt"))
-            print(f'Save checkpoint {epoch}')
-            print('Start evaluation.....')
-            precision, recall, f1 = evaluate(args, model_without_ddp)
-            f1 += epoch/1000.0
-            if f1 > best_f1:
-                best_f1 = f1
-                torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_best.pt"))
-            if epoch > args.nepochs - 10 and f1 > best_f1_last_10_epoch:
-                best_f1_last_10_epoch = f1
-                torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_best_last_10_epoch.pt"))
-            print(f'precision/recall/f1: {precision}/{recall}/{f1}')
-            writer.add_scalar('eval/precision', precision, epoch)
-            writer.add_scalar('eval/recall', recall, epoch)
-            writer.add_scalar('eval/f1', f1, epoch)
+            torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_last.pt"))
+            # torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_{epoch}.pt"))
+            # print(f'Save checkpoint {epoch}')
+            # print('Start evaluation.....')
+            # precision, recall, f1 = evaluate(args, model_without_ddp)
+            # f1 += epoch/1000.0
+            # if f1 > best_f1:
+            #     best_f1 = f1
+            #     torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_best.pt"))
+            # if epoch > args.nepochs - 10 and f1 > best_f1_last_10_epoch:
+            #     best_f1_last_10_epoch = f1
+            #     torch.save(model_without_ddp.state_dict(),os.path.join(args.savedir+'/checkpoints', f"RNGDetNet_best_last_10_epoch.pt"))
+            # print(f'precision/recall/f1: {precision}/{recall}/{f1}')
+            # writer.add_scalar('eval/precision', precision, epoch)
+            # writer.add_scalar('eval/recall', recall, epoch)
+            # writer.add_scalar('eval/f1', f1, epoch)
         if args.multi_GPU:
             dist.barrier()
         RNGDetNet.train()
