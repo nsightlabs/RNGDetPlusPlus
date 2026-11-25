@@ -222,7 +222,7 @@ def evaluate(args,RNGDetNet):
     scores = []
     for name in os.listdir(f'./{args.savedir}/valid/skeleton'):
         pred_graph = np.array(Image.open(f'./{args.savedir}/valid/skeleton/{name}'))[args.ROI_SIZE:-args.ROI_SIZE,args.ROI_SIZE:-args.ROI_SIZE]
-        gt_graph = np.array(Image.open(f'./dataset/segment/{name}'))
+        gt_graph = np.array(Image.open(f'./data/segment/{name}'))
         scores.append(pixel_eval_metric(pred_graph,gt_graph))
     return round(sum([x[0] for x in scores])/(len(scores)+1e-7),3),\
             round(sum([x[1] for x in scores])/(len(scores)+1e-7),3),\
