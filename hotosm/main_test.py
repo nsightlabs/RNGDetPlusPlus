@@ -238,8 +238,9 @@ def test(args):
                     pickle.dump(output_graph,open(f'./{args.savedir}/test/graph/{tile_name}.p','wb'),protocol=2)
 
                     pred_graph = np.array(Image.open(f'./{args.savedir}/test/skeleton/{tile_name}.png'))
-                    gt_graph = np.array(Image.open(f'./data/segment/{tile_name}.png'))
-                    print(pixel_eval_metric(pred_graph,gt_graph))
+                    if args.eval:
+                        gt_graph = np.array(Image.open(f'./data/segment/{tile_name}.png'))
+                        print(pixel_eval_metric(pred_graph,gt_graph))
                     break
                 
         time2 = time.time()
@@ -336,6 +337,7 @@ if __name__ == '__main__':
     parser.add_argument("--multi_scale", action='store_true')
     parser.add_argument("--instance_seg", action='store_true')
     parser.add_argument("--process_boundary", action='store_true')
+    parser.add_argument("--eval", action='store_true')
     
     args = parser.parse_args()
     test(args)
