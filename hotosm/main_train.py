@@ -227,7 +227,7 @@ def evaluate(args,RNGDetNet):
 
 
     RNGDetNet.eval()
-    valid(args,RNGDetNet)
+    valid(args,RNGDetNet, slice(0, 5))
     
     scores = []
     for name in os.listdir(f'./{args.savedir}/valid/skeleton'):

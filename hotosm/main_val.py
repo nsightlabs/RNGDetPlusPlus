@@ -65,7 +65,7 @@ class Graph():
             self.edges[f'{v2.id}_{v1.id}'] = Edge(v2,v1,self.edge_num)
             self.edge_num += 1
 
-def valid(args, RNGDetNet):
+def valid(args, RNGDetNet, slice):
     # ==============
     RNGDetNet.cuda()
     RNGDetNet.eval()
@@ -84,7 +84,7 @@ def valid(args, RNGDetNet):
     
     # tile list
     with open('./data/data_split.json','r') as jf:
-        tile_list = json.load(jf)['validation'][:5]
+        tile_list = json.load(jf)['validation'][slice]
 
     for i, tile_name in enumerate(tile_list):
         print('====================================================')
